@@ -20,13 +20,13 @@ describe('Integration Test', () => {
         if (removeData) fs.removeSync('data/' + name + '/');
         let blockchain = new Blockchain(name);
         let operator = new Operator(name, blockchain);
-        let miner = new Miner(blockchain, logLevel);
+        let miner = new Miner(blockchain, logLevel, port);
         let node = new Node(host, port, peers, blockchain);
         let httpServer = new HttpServer(node, blockchain, operator, miner);
         return httpServer.listen(host, port);
     };
     
-    const multipleTransactions = 100;
+    const multipleTransactions = 50;
     const createTransaction = (context, amount) => {
         return Promise.resolve()
             .then(() => {

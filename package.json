@@ -12,25 +12,30 @@
     "naivecoin": "bin/naivecoin.js"
   },
   "scripts": {
-    "start": "node bin/naivecoin.js",
+    "start": "nodemon --ignore data/ --exec babel-node --presets env,stage-2 bin/naivecoin.js",
     "compose:up": "docker-compose up",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc --reporter=lcov --reporter=text --clean node node_modules/mocha/bin/_mocha -u bdd --colors test/",
-    "test": "_mocha -u bdd --colors test/",
+    "test": "_mocha -u bdd --colors --timeout=20000 test/",
     "diagrams": "mmdc -i doc/blockchain.mmd -o doc/blockchain.png -b transparent && mmdc -i doc/components.mmd -o doc/components.png -b transparent"
   },
   "dependencies": {
+    "apollo-server": "^2.0.6",
+    "apollo-server-express": "^2.0.5",
     "body-parser": "^1.17.1",
     "cli-color": "^1.2.0",
     "elliptic": "^6.4.0",
     "es6-error": "^4.0.2",
     "express": "^4.16.2",
     "fs-extra": "^5.0.0",
+    "graphql": "^14.0.0",
+    "moment": "^2.22.2",
     "pug": "^2.0.0-rc.4",
     "ramda": "^0.25.0",
     "statuses": "^1.3.1",
     "superagent": "^3.5.2",
     "swagger-ui-express": "^1.0.8",
+    "thread-sleep": "^2.1.0",
     "threads": "^0.10.0",
     "timeago.js": "^3.0.2",
     "yargs": "^10.1.1"
@@ -39,10 +44,14 @@
     "node": ">=6"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "coveralls": "^3.0.0",
     "mermaid.cli": "^0.3.1",
     "mocha": "^3.3.0",
     "mocha-steps": "^1.0.2",
+    "nodemon": "^1.18.4",
     "nyc": "^10.3.0",
     "supertest": "^1.0.0"
   }

@@ -20,8 +20,13 @@
     "diagrams": "mmdc -i doc/blockchain.mmd -o doc/blockchain.png -b transparent && mmdc -i doc/components.mmd -o doc/components.png -b transparent"
   },
   "dependencies": {
+    "apollo-engine": "^1.1.2",
+    "apollo-fetch": "^0.7.0",
     "apollo-server": "^2.0.6",
     "apollo-server-express": "^2.0.5",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "body-parser": "^1.17.1",
     "cli-color": "^1.2.0",
     "elliptic": "^6.4.0",
@@ -29,6 +34,7 @@
     "express": "^4.16.2",
     "fs-extra": "^5.0.0",
     "graphql": "^14.0.0",
+    "ip": "^1.1.5",
     "moment": "^2.22.2",
     "pug": "^2.0.0-rc.4",
     "ramda": "^0.25.0",
@@ -38,15 +44,13 @@
     "thread-sleep": "^2.1.0",
     "threads": "^0.10.0",
     "timeago.js": "^3.0.2",
+    "winston": "^3.1.0",
     "yargs": "^10.1.1"
   },
   "engines": {
     "node": ">=6"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
     "coveralls": "^3.0.0",
     "mermaid.cli": "^0.3.1",
     "mocha": "^3.3.0",

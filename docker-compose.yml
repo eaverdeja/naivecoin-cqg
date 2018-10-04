@@ -4,38 +4,67 @@ services:
     environment:
       - NAME=1
       - HOST=0.0.0.0
+      - PEERS=http://node3:8000/graphql
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
-    - "3001"
+      - '8001:8000'
     volumes:
-    - ./:/naivecoin
+      - ./:/naivecoin
+    links:
+      - explorer1
   node2:
-    environment:      
+    environment:
       - HOST=0.0.0.0
       - NAME=2
-      - PEERS=http://node1:3001      
+      - PEERS=http://node1:8000/graphql
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
-    - "3002:3001"
+      - '8002:8000'
     volumes:
-    - ./:/naivecoin
+      - ./:/naivecoin
     links:
       - node1:node1
+      - explorer2
   node3:
     environment:
       - HOST=0.0.0.0
       - NAME=3
-      - PEERS=http://node2:3001      
+      - PEERS=http://node2:8000/graphql
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
-    - "3003:3001"
+      - '8003:8000'
     volumes:
-    - ./:/naivecoin
+      - ./:/naivecoin
     links:
       - node2:node2
+      - explorer3
+  explorer1:
+    image: naivecoin-explorer
+    environment:
+      - REACT_APP_GRAPHQL_PORT=8001
+    volumes:
+      - '../naivecoin-explorer/:/usr/src/naivecoin-explorer'
+    ports:
+      - '3001:3000'
+  explorer2:
+    image: naivecoin-explorer
+    environment:
+      - REACT_APP_GRAPHQL_PORT=8002
+    volumes:
+      - '../naivecoin-explorer/:/usr/src/naivecoin-explorer'
+    ports:
+      - '3002:3000'
+  explorer3:
+    image: naivecoin-explorer
+    environment:
+      - REACT_APP_GRAPHQL_PORT=8003
+    volumes:
+      - '../naivecoin-explorer/:/usr/src/naivecoin-explorer'
+    ports:
+      - '3003:3000'

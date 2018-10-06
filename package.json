@@ -44,6 +44,7 @@
     "thread-sleep": "^2.1.0",
     "threads": "^0.10.0",
     "timeago.js": "^3.0.2",
+    "uuid": "^3.3.2",
     "winston": "^3.1.0",
     "yargs": "^10.1.1"
   },
